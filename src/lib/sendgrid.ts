@@ -12,7 +12,8 @@ type SendMagicLinkArgs = {
 
 const apiKey = process.env.SENDGRID_API_KEY;
 const fromEmail = APP_CONFIG.SENDGRID_FROM_EMAIL;
-const sandboxMode = APP_CONFIG.SENDGRID_SANDBOX_MODE;
+// Preserve sandbox behavior unless real delivery is explicitly enabled.
+const sandboxMode = process.env.SENDGRID_SANDBOX_MODE?.trim().toLowerCase() !== "false";
 
 if (apiKey) {
   sgMail.setApiKey(apiKey);

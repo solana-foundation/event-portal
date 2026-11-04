@@ -37,5 +37,4 @@ export const APP_CONFIG = {
   EVENT_GEO_LON: -0.2131168,
   SENDGRID_FROM_EMAIL: "noreply@solana.org",
   SENDGRID_FROM_NAME: "Events Team",
-  SENDGRID_SANDBOX_MODE: true,
 } as const;

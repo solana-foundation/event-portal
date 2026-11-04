@@ -256,6 +256,11 @@ If you are testing the email flow locally:
 - keep `SENDGRID_SANDBOX_MODE=true` until you want real delivery
 - submit the form on `/email-link`
 
+`SENDGRID_SANDBOX_MODE` is a server environment variable and defaults to `true`
+when unset. Set it to `false` in Vercel for real delivery, then redeploy for the
+change to take effect. Sandbox requests validate the email without delivering it
+or creating SendGrid Email Activity events.
+
 ## Scripts
 
 ```bash
