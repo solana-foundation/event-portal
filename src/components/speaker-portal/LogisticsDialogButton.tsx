@@ -153,7 +153,7 @@ export default function LogisticsDialogButton({ stage, stages }: { stage?: Stage
               <p className="text-base text-white">{LOGISTICS_CONFIG.shared.travel}</p>
             </div>
           </section>
-          <div className="h-px bg-[#353535]" />
+          {SPEAKER_GUIDE_URL ? <div className="h-px bg-[#353535]" /> : null}
 
           {SPEAKER_GUIDE_URL ? (
             <section className="group">

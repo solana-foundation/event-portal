@@ -21,10 +21,9 @@ export const APP_CONFIG = {
   NEXT_PUBLIC_SPEAKER_CONTACT_EMAIL: "events@solana.org",
   NEXT_PUBLIC_EVENT_REGISTRATION_PLATFORM: "Luma",
   NEXT_PUBLIC_EVENT_COUPON_PARAM: "coupon",
-  NEXT_PUBLIC_SPEAKER_GUIDE_URL:
-    "https://docs.google.com/document/d/1GjvV5qfq2NF8oZBSPCZ81t5o-cv7RG7lCyuzROA8pLg/edit?tab=t.0#heading=h.l50izlx37hzl",
-  NEXT_PUBLIC_SPEAKER_GUIDE_LABEL: "2025 speaker guide (reference only)",
-  NEXT_PUBLIC_SPEAKER_GUIDE_NOTE: "The 2026 guide is being updated. Confirm event-day details with the speaker team.",
+  NEXT_PUBLIC_SPEAKER_GUIDE_URL: "",
+  NEXT_PUBLIC_SPEAKER_GUIDE_LABEL: "",
+  NEXT_PUBLIC_SPEAKER_GUIDE_NOTE: "",
   NEXT_PUBLIC_HOME_SCHEDULE_ENABLED: false,
   NEXT_PUBLIC_SITE_LOGO_PATH: "/breakpoint/nav-bp26.svg",
   NEXT_PUBLIC_SITE_LOGO_WIDTH: 104,
