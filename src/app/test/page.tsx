@@ -3,6 +3,7 @@ import { Metadata } from "next/types";
 import SpeakerCard from "@/components/speaker-card";
 import SessionsCards from "@/components/sessions-cards";
 import { Speaker, StageTitle, StageValues, DeckStatus } from "@/lib/airtable/types";
+import { getSessionDeckStatus } from "@/lib/airtable/utils";
 import LogisticsDialogButton from "@/components/speaker-portal/LogisticsDialogButton";
 import ActionsChecklist from "@/components/speaker-portal/ActionsChecklist";
 import SpeakerResourceLinks from "@/components/speaker-portal/SpeakerResourceLinks";
@@ -150,7 +151,7 @@ export default function DemoSpeakerPage() {
   const sessionsForChecklist = sessions.map((session) => ({
     id: session.id,
     name: session.name!,
-    actionsDeckReceived: session.actionsDeckReceived,
+    actionsDeckReceived: getSessionDeckStatus(session),
     greenlightTime: session.greenlightTime,
   }));
 
