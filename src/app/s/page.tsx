@@ -12,7 +12,7 @@ import { getSessionCalendarHttpUrl, getSessionsCalendarUrl, getSpeakerCalendarUr
 import LogisticsDialogButton from "@/components/speaker-portal/LogisticsDialogButton";
 import ActionsChecklist from "@/components/speaker-portal/ActionsChecklist";
 import SpeakerResourceLinks from "@/components/speaker-portal/SpeakerResourceLinks";
-import { getSpeakerSessionIds, normalizeDeckStatus } from "@/lib/airtable/utils";
+import { getSessionDeckStatus, getSpeakerSessionIds } from "@/lib/airtable/utils";
 import { EVENT_DESCRIPTION, EVENT_NAME } from "@/lib/site";
 import { BreakpointHero, EventMeta } from "@/components/breakpoint-hero";
 
@@ -125,7 +125,7 @@ export default async function SpeakerPage({ searchParams }: { searchParams: Prom
     return {
       id: session.id,
       name: session.name,
-      actionsDeckReceived: normalizeDeckStatus(session.actionsDeckReceived ?? speakerData.actionsDeckReceived),
+      actionsDeckReceived: getSessionDeckStatus(session, speakerData.actionsDeckReceived),
       greenlightTime: session.greenlightTime ?? speakerData.greenlightTime ?? null,
       webPublishingStatus: session.webPublishingStatus,
     };

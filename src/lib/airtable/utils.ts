@@ -53,6 +53,24 @@ export const normalizeDeckStatus = (value?: string | null) => {
   return Object.values(DeckStatus).find((status) => status === value) ?? null;
 };
 
+// Expects resolved format labels, rather than Airtable linked record IDs.
+export const getSessionDeckStatus = (
+  session: Pick<Session, "format" | "actionsDeckReceived">,
+  speakerDeckStatus?: string | null,
+) => {
+  const requiresDeck = session.format?.some((label) => {
+    const format = label
+      .replace(/\s*\(\d+\s*min(?:utes)?\)\s*$/i, "")
+      .trim()
+      .replace(/\s+/g, " ")
+      .toLowerCase();
+
+    return ["keynote", "product keynote", "opening", "closing"].includes(format);
+  });
+
+  return requiresDeck ? normalizeDeckStatus(session.actionsDeckReceived ?? speakerDeckStatus) : null;
+};
+
 export const getSpeakerSessionIds = (record: { fields?: Record<string, unknown> }): string[] => {
   const ids = new Set<string>();
 
