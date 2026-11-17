@@ -6,6 +6,7 @@ import { Speaker, StageTitle, StageValues, DeckStatus } from "@/lib/airtable/typ
 import { getSessionDeckStatus } from "@/lib/airtable/utils";
 import LogisticsDialogButton from "@/components/speaker-portal/LogisticsDialogButton";
 import ActionsChecklist from "@/components/speaker-portal/ActionsChecklist";
+import PostEventSection from "@/components/speaker-portal/PostEventSection";
 import SpeakerResourceLinks from "@/components/speaker-portal/SpeakerResourceLinks";
 import { EVENT_DESCRIPTION, EVENT_NAME, SITE_URL } from "@/lib/site";
 
@@ -165,6 +166,8 @@ export default function DemoSpeakerPage() {
         <EventMeta />
         <SpeakerCard {...speaker} sessions={sessionsForChecklist} dietaryStatus={speaker.dietary} />
 
+        <PostEventSection speakerPhotoLink={speaker.speakerPhotoLink} youtubeVideoUrl={speaker.youtubeVideoUrl} />
+
         <SessionsCards
           items={allSessionsData}
           calendarUrl={calendarUrl}
@@ -194,14 +197,9 @@ export default function DemoSpeakerPage() {
           discountCode={speaker.discountCode}
           mcInfo={speaker.mcInfo}
           parkingTicketUrl={speaker.parkingTicket}
-          youtubeVideoUrl={speaker.youtubeVideoUrl}
-          speakerPhotoLink={speaker.speakerPhotoLink}
         />
 
         <SpeakerResourceLinks />
-
-        {/* <Separator />
-        <PostEventSection /> */}
       </main>
     </div>
   );

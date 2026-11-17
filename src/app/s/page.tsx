@@ -8,9 +8,9 @@ import SpeakerCard from "@/components/speaker-card";
 import SessionsCards from "@/components/sessions-cards";
 import { Speaker, StageTitle } from "@/lib/airtable/types";
 import { getSessionCalendarHttpUrl, getSessionsCalendarUrl, getSpeakerCalendarUrl } from "@/lib/ics/utils";
-// import { Gallery } from "@/components/gallery";
 import LogisticsDialogButton from "@/components/speaker-portal/LogisticsDialogButton";
 import ActionsChecklist from "@/components/speaker-portal/ActionsChecklist";
+import PostEventSection from "@/components/speaker-portal/PostEventSection";
 import SpeakerResourceLinks from "@/components/speaker-portal/SpeakerResourceLinks";
 import { getSessionDeckStatus, getSpeakerSessionIds } from "@/lib/airtable/utils";
 import { EVENT_DESCRIPTION, EVENT_NAME } from "@/lib/site";
@@ -143,6 +143,11 @@ export default async function SpeakerPage({ searchParams }: { searchParams: Prom
           speakerCardUrl={speakerData.speakerCardUrl}
         />
 
+        <PostEventSection
+          speakerPhotoLink={speakerData.speakerPhotoLink}
+          youtubeVideoUrl={speakerData.youtubeVideoUrl}
+        />
+
         <SessionsCards
           items={allSessionsData}
           calendarUrl={speakerCalendarUrl}
@@ -172,14 +177,9 @@ export default async function SpeakerPage({ searchParams }: { searchParams: Prom
           discountCode={speakerData.discountCode}
           mcInfo={speakerData.mcInfo}
           parkingTicketUrl={speakerData.parkingTicket}
-          youtubeVideoUrl={speakerData.youtubeVideoUrl}
-          speakerPhotoLink={speakerData.speakerPhotoLink}
         />
 
         <SpeakerResourceLinks />
-
-        {/* <Separator />
-        <PostEventSection /> */}
       </main>
     </div>
   );
