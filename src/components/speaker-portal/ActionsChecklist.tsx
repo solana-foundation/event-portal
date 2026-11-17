@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "@/components/section-heading";
-import { Check, CircleMinus, Film, Info, X } from "@/components/ui/icons";
+import { Check, CircleMinus, Info, X } from "@/components/ui/icons";
 import { DeckStatus } from "@/lib/airtable/types";
 import { buildEventCouponUrl, EVENT_REGISTRATION_PLATFORM, SPEAKER_CONTACT_EMAIL } from "@/lib/site";
 
@@ -19,16 +19,9 @@ interface ActionsChecklistProps {
   discountCode?: string | null;
   mcInfo?: string | null;
   parkingTicketUrl?: string | null;
-  youtubeVideoUrl?: string | null;
-  speakerPhotoLink?: string | null;
 }
 
 type TaskStatus = "approved" | "todo" | "pending" | "Approved" | "Denied" | "Pending";
-
-type MediaLink = {
-  label: string;
-  url: string;
-};
 
 type Task = {
   id: string;
@@ -37,9 +30,8 @@ type Task = {
   status: TaskStatus;
   link: string | null;
   linkText: string | null;
-  type: "task" | "info" | "media";
+  type: "task" | "info";
   codes?: string[];
-  mediaLinks?: MediaLink[];
 };
 
 export default function ActionsChecklist({
@@ -52,8 +44,6 @@ export default function ActionsChecklist({
   discountCode,
   mcInfo,
   parkingTicketUrl,
-  youtubeVideoUrl,
-  speakerPhotoLink,
 }: ActionsChecklistProps) {
   // Helper function to get dietary description
   const getDietaryDescription = (): string => {
@@ -70,15 +60,6 @@ export default function ActionsChecklist({
       .split(",")
       .map((code) => code.trim())
       .filter((code) => code.length > 0);
-  };
-
-  // Parse comma-separated URLs
-  const parseUrls = (urls?: string | null): string[] => {
-    if (!urls) return [];
-    return urls
-      .split(",")
-      .map((url) => url.trim())
-      .filter((url) => url.length > 0);
   };
 
   // Create ticket tasks
@@ -165,33 +146,6 @@ export default function ActionsChecklist({
     });
   }
 
-  // Media Links - combined info box for YouTube video and speaker photo
-  // Supports comma-separated URLs for multiple links
-  const mediaLinks: MediaLink[] = [];
-  const youtubeUrls = parseUrls(youtubeVideoUrl);
-  const photoUrls = parseUrls(speakerPhotoLink);
-
-  youtubeUrls.forEach((url, index) => {
-    const label = youtubeUrls.length > 1 ? `Speaker Video ${index + 1}` : "Speaker Video";
-    mediaLinks.push({ label, url });
-  });
-  photoUrls.forEach((url, index) => {
-    const label = photoUrls.length > 1 ? `Speaker Photos ${index + 1}` : "Speaker Photos";
-    mediaLinks.push({ label, url });
-  });
-  if (mediaLinks.length > 0) {
-    ticketTasks.push({
-      id: "media-links",
-      title: "Media",
-      description: "Your speaker media for this event.",
-      status: "approved" as const,
-      link: null,
-      linkText: null,
-      type: "media" as const,
-      mediaLinks,
-    });
-  }
-
   // Create deck upload tasks for each session
   // States: null, DeckStatus.ToUpload, DeckStatus.Uploaded, DeckStatus.Approved
   // Show tasks for all states except null
@@ -264,9 +218,6 @@ export default function ActionsChecklist({
   const getTaskIcon = (task: Task) => {
     if (task.type === "info") {
       return <Info className="h-5 w-5 text-[#a2a2a2]" aria-hidden="true" />;
-    }
-    if (task.type === "media") {
-      return <Film className="h-5 w-5 text-[#a2a2a2]" aria-hidden="true" />;
     }
     if (isApproved(task)) {
       return <Check className="h-5 w-5 text-[#14f195]" aria-hidden="true" />;
@@ -355,17 +306,6 @@ export default function ActionsChecklist({
                         </li>
                       );
                     })}
-                  </ul>
-                )}
-                {task.mediaLinks && task.mediaLinks.length > 0 && (
-                  <ul className="unstyled-list space-y-1 text-base">
-                    {task.mediaLinks.map((mediaLink: MediaLink, index: number) => (
-                      <li key={index}>
-                        <a target="_blank" rel="noopener noreferrer" href={mediaLink.url} className={linkClass}>
-                          {mediaLink.label}
-                        </a>
-                      </li>
-                    ))}
                   </ul>
                 )}
               </div>
