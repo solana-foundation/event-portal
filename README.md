@@ -112,7 +112,7 @@ Speaker fields in use:
 - `Speaker Permit Approval`
 - `MC Info`
 - `Parking Ticket`
-- `YouTube Speaker Video`
+- `Speaker Video Link` (legacy alias: `YouTube Speaker Video`)
 - `Speaker Photo Link`
 
 Format fields in use:

@@ -43,7 +43,7 @@ export const airtableFieldMap = {
     speakerPermitApproval: ["Speaker Permit Approval"],
     mcInfo: ["MC Info"],
     parkingTicket: ["Parking Ticket"],
-    youtubeVideoUrl: ["YouTube Speaker Video"],
+    youtubeVideoUrl: ["Speaker Video Link", "YouTube Speaker Video"],
     speakerPhotoLink: ["Speaker Photo Link"],
     portalLink: ["Speaker Portal Link", "Speaker Portal"],
     actionsDeckReceived: ["Actions_Deck Received"],

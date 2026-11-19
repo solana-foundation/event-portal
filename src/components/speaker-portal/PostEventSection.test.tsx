@@ -3,6 +3,34 @@ import { parseSpeakerRecord } from "@/lib/airtable/schemas";
 import PostEventSection from "./PostEventSection";
 
 describe("PostEventSection", () => {
+  test.each(["Speaker Video Link", "YouTube Speaker Video"])(
+    "shows the current speaker's Airtable recording from %s alongside their photos",
+    (videoField) => {
+      const speaker = parseSpeakerRecord({
+        id: "recSpeaker",
+        fields: {
+          [videoField]: "https://youtube.com/watch?v=one, https://youtube.com/watch?v=two",
+          "Speaker Photo Link": "https://photos.example.com/speaker-album",
+        },
+      });
+
+      render(<PostEventSection {...speaker} />);
+
+      expect(screen.getByRole("link", { name: "Speaker Photos" })).toHaveAttribute(
+        "href",
+        "https://photos.example.com/speaker-album",
+      );
+      expect(screen.getByRole("link", { name: "Speaker Video 1" })).toHaveAttribute(
+        "href",
+        "https://youtube.com/watch?v=one",
+      );
+      expect(screen.getByRole("link", { name: "Speaker Video 2" })).toHaveAttribute(
+        "href",
+        "https://youtube.com/watch?v=two",
+      );
+    },
+  );
+
   test("shows the current speaker's Airtable photos without requiring a recording", () => {
     const speaker = parseSpeakerRecord({
       id: "recSpeaker",
