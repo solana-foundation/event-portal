@@ -87,7 +87,7 @@ Use this file first before re-exploring the repo.
   - `Speaker Permit Approval`
   - `MC Info`
   - `Parking Ticket`
-- `Speaker Video Link` (legacy alias: `YouTube Speaker Video`)
+  - `Speaker Video Link` (legacy alias: `YouTube Speaker Video`)
   - `Speaker Photo Link`
 - Formats:
   - `Format`
